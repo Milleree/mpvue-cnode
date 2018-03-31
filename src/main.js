@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App'
-import wxPromiseApi from 'minapp-api-promise'
 import store from './store'
+import wxPromiseApi from 'minapp-api-promise'
+import requestIntercepter from './utils/requestIntercepter'
 
 // 初始化插件
+wxPromiseApi.intercept('request', requestIntercepter)
 // 在每个vue组件里使用this.$wx, this.$store
 Vue.use({
   install(Vue, options) {

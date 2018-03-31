@@ -24,6 +24,8 @@
       <p>{{count}}</p>
       <button @click.stop="increment">+</button>
     </div>
+
+    <button @click="request">request</button>
   </div>
 </template>
 
@@ -50,6 +52,10 @@ export default {
   },
 
   methods: {
+    ...mapMutations([
+      'decrement',
+      'increment',
+    ]),
     bindViewTap() {
       const url = '../logs/main'
       wx.navigateTo({ url })
@@ -57,10 +63,13 @@ export default {
     clickHandle(msg, ev) {
       console.log('clickHandle:', msg, ev)
     },
-    ...mapMutations([
-      'decrement',
-      'increment',
-    ]),
+    request() {
+      this.$wx.request({
+        url: '/topics?page=1&limit=5',
+        methods: 'GET',
+      })
+        .then(console.log)
+    },
   },
 
   created() {
