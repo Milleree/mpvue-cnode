@@ -1,6 +1,10 @@
 import $wx from 'minapp-api-promise'
 export default {
-  state: {},
+  state: {
+    avatarUrl: '',
+    nickName: '',
+    gender: 1,
+  },
   mutations: {
     SET_USER_INFO(state, payload) {
       Object.assign(state, payload)

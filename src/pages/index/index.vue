@@ -1,7 +1,7 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
 
-    <div class="userinfo" v-if="userInfo" @click="bindViewTap">
+    <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
         <card :text="userInfo.nickName"></card>
@@ -19,16 +19,23 @@
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
 
-    <p>{{count}}</p>
-    <!-- <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a> -->
+    <div class="counter">
+      <button @click.stop="decrement">-</button>
+      <p>{{count}}</p>
+      <button @click.stop="increment">+</button>
+    </div>
   </div>
 </template>
 
 <script>
 import card from '@/components/card'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
+  components: {
+    card,
+  },
+
   data() {
     return {
       motto: 'Hello World',
@@ -42,10 +49,6 @@ export default {
     }),
   },
 
-  components: {
-    card,
-  },
-
   methods: {
     bindViewTap() {
       const url = '../logs/main'
@@ -54,15 +57,22 @@ export default {
     clickHandle(msg, ev) {
       console.log('clickHandle:', msg, ev)
     },
+    ...mapMutations([
+      'decrement',
+      'increment',
+    ]),
   },
 
   created() {
     this.$store.dispatch('getUserInfo')
+    // .then(() => {
+    //   console.log(this.userInfo)
+    // })
   },
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -92,9 +102,10 @@ export default {
 }
 
 .counter {
-  display: inline-block;
-  margin: 10px auto;
-  padding: 5px 10px;
+  display: inline-flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
   color: blue;
   border: 1px solid blue;
 }
