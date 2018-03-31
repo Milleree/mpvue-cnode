@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <div>
     <p class="card">
       {{text}}
