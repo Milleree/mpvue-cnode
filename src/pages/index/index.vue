@@ -26,7 +26,7 @@
 import card from '@/components/card'
 
 export default {
-  data () {
+  data() {
     return {
       motto: 'Hello World',
       userInfo: {}
@@ -38,28 +38,38 @@ export default {
   },
 
   methods: {
-    bindViewTap () {
+    bindViewTap() {
       const url = '../logs/main'
       wx.navigateTo({ url })
     },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
+    async getUserInfo() {
+      // 原生方法
+      // wx.login({
+      //   success: () => {
+      //     wx.getUserInfo({
+      //       success: (res) => {
+      //         this.userInfo = res.userInfo
+      //       }
+      //     })
+      //   }
+      // })
+      // Promise写法
+      // this.$wx.login()
+      //   .then(this.$wx.getUserInfo)
+      //   .then(({ userInfo }) => {
+      //     this.userInfo = userInfo
+      //   })
+      // async写法
+      await this.$wx.login()
+      const { userInfo } = await this.$wx.getUserInfo()
+      this.userInfo = userInfo
     },
-    clickHandle (msg, ev) {
+    clickHandle(msg, ev) {
       console.log('clickHandle:', msg, ev)
     }
   },
 
-  created () {
+  created() {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo()
   }

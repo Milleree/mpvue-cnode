@@ -1,5 +1,12 @@
 import Vue from 'vue'
 import App from './App'
+import $wx from 'minapp-api-promise'
+Object.defineProperties(Vue.prototype, {
+  '$wx': {
+    value: $wx,
+    writable: false,
+  }
+})
 
 Vue.config.productionTip = false
 App.mpType = 'app'
