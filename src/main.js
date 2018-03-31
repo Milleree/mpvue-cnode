@@ -9,7 +9,7 @@ Vue.use({
   install(Vue, options) {
     Vue.prototype.$store = store
     Vue.prototype.$wx = wxPromiseApi
-  }
+  },
 })
 
 Vue.config.productionTip = false
@@ -27,7 +27,7 @@ export default {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
-    }
-  }
+      navigationBarTextStyle: 'black',
+    },
+  },
 }

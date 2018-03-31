@@ -4,7 +4,7 @@ export default {
   mutations: {
     SET_USER_INFO(state, payload) {
       Object.assign(state, payload)
-    }
+    },
   },
   actions: {
     async getUserInfo({ commit }) {
@@ -31,5 +31,5 @@ export default {
       const { userInfo } = await $wx.getUserInfo()
       commit('SET_USER_INFO', userInfo)
     },
-  }
+  },
 }

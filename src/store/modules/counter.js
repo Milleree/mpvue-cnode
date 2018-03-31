@@ -1,6 +1,6 @@
 export default {
   state: {
-    count: 0
+    count: 0,
   },
   mutations: {
     increment: (state) => {
@@ -10,6 +10,6 @@ export default {
     decrement: (state) => {
       const obj = state
       obj.count -= 1
-    }
-  }
+    },
+  },
 }

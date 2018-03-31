@@ -38,12 +38,12 @@ export default {
   computed: {
     ...mapState({
       count: state => state.counter.count,
-      userInfo: state => ({ ...state.userInfo })
+      userInfo: state => ({ ...state.userInfo }),
     }),
   },
 
   components: {
-    card
+    card,
   },
 
   methods: {

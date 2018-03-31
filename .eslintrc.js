@@ -26,7 +26,14 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'space-before-function-paren': 0,
-    'comma-dangle': 0,
+    'comma-dangle': ["error", "always-multiline"],
+    // 'comma-dangle': ["error", {
+    //   "arrays": "never",
+    //   "objects": "always",
+    //   "imports": "always-multiline",
+    //   "exports": "only-multiline",
+    //   "functions": "ignore"
+    // }],
     'semi': 0
   },
   globals: {
