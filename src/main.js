@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import App from './App'
-import store from './store'
-import wxPromiseApi from 'minapp-api-promise'
+import $wx from 'minapp-api-promise'
 import requestIntercepter from './utils/requestIntercepter'
+import store from './store'
 
 // 初始化插件
-wxPromiseApi.intercept('request', requestIntercepter)
+$wx.intercept('request', requestIntercepter)
 // 在每个vue组件里使用this.$wx, this.$store
 Vue.use({
   install(Vue, options) {
     Vue.prototype.$store = store
-    Vue.prototype.$wx = wxPromiseApi
+    Vue.prototype.$wx = $wx
   },
 })
 

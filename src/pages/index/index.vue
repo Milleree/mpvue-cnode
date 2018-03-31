@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
+  <div class="container">
 
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
@@ -8,16 +8,18 @@
       </div>
     </div>
 
+    <p>文章数量：{{topics.length}}</p>
+
     <div class="usermotto">
       <div class="user-motto">
         <card :text="motto"></card>
       </div>
     </div>
 
-    <form class="form-container">
+    <!-- <form class="form-container">
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
+    </form> -->
 
     <div class="counter">
       <button @click.stop="decrement">-</button>
@@ -48,6 +50,7 @@ export default {
     ...mapState({
       count: state => state.counter.count,
       userInfo: state => ({ ...state.userInfo }),
+      topics: state => state.topics.topics,
     }),
   },
 
@@ -56,19 +59,15 @@ export default {
       'decrement',
       'increment',
     ]),
-    bindViewTap() {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    },
-    clickHandle(msg, ev) {
-      console.log('clickHandle:', msg, ev)
-    },
+    // bindViewTap() {
+    //   const url = '../logs/main'
+    //   wx.navigateTo({ url })
+    // },
+    // clickHandle(msg, ev) {
+    //   console.log('clickHandle:', msg, ev)
+    // },
     request() {
-      this.$wx.request({
-        url: '/topics?page=1&limit=5',
-        methods: 'GET',
-      })
-        .then(console.log)
+      this.$store.dispatch('getTopics')
     },
   },
 
