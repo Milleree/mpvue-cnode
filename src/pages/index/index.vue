@@ -42,11 +42,20 @@ export default {
       'getTopics',
     ]),
     getMore(e) {
-      if (this.page >= 10) return
+      const refresh = this.topics.length >= 100 // 每隔一定数据量清空一次列表, 因为小程序限制数据量的传入
       this.getTopics({
         page: ++this.page,
         limit: 20,
+        refresh,
       })
+      // .then(() => {
+      //   if (refresh) {
+      //     wx.pageScrollTo({
+      //       scrollTop: 0,
+      //       duration: 300,
+      //     })
+      //   }
+      // })
     },
   },
 
@@ -54,7 +63,7 @@ export default {
     this.getTopics({
       page: 1,
       limit: 20,
-      actionType: 'init', // 'init'覆盖列表（刷新）, 其余情况表示添加到列表
+      refresh: true, // 是否刷新列表, false表示添加到列表
     })
   },
 }

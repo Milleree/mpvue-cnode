@@ -10,9 +10,9 @@ export default {
     },
   },
   actions: {
-    async getTopics({ state: { topics }, commit }, { page, limit, actionType }) {
+    async getTopics({ state: { topics }, commit }, { page, limit, refresh }) {
       const delta = await getTopics({ page, limit })
-      commit('SET_TOPICS', actionType === 'init' ? delta : [...topics, ...delta])
+      commit('SET_TOPICS', refresh ? delta : [...topics, ...delta])
     },
   },
 }

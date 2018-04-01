@@ -1,6 +1,7 @@
 <style lang="less">
 .topic_header {
   font-size: 28rpx;
+  padding: 0 15rpx;
   .topic_full_title {
     font-size: 44rpx;
     font-weight: 700;
@@ -12,6 +13,8 @@
   .changes {
     font-size: 24rpx;
     color: #838383;
+    border-bottom: 1rpx solid #e5e5e5;
+    margin-bottom: 20rpx;
     text::before {
       content: "·";
       font-weight: 900;
