@@ -1,5 +1,5 @@
 <template functional>
-  <div class="cell">
+  <div class="cell" @click="goDetail">
     <img class="user_avatar" :src="topic.author.avatar_url">
     <text class="label active" v-if="topic.top">置顶</text>
     <text class="label active" v-else-if="topic.good">精华</text>
@@ -13,6 +13,13 @@
 <script>
 export default {
   props: ['topic'],
+  methods: {
+    goDetail() {
+      wx.navigateTo({
+        url: '/pages/topicdetail/main?id=' + this.topic.id,
+      })
+    },
+  },
 }
 </script>
 
@@ -32,19 +39,6 @@ export default {
     font-size: 20rpx;
     color: #b4b4b4;
     vertical-align: middle;
-  }
-  .label {
-    background-color: #e5e5e5;
-    color: #999;
-    font-size: 24rpx;
-    padding: 4rpx 8rpx;
-    border-radius: 6rpx;
-    margin-right: 10rpx;
-    vertical-align: middle;
-    &.active {
-      background-color: #80bd01;
-      color: #fff;
-    }
   }
 }
 </style>
