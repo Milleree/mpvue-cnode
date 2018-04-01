@@ -12,6 +12,10 @@ export default {
     // }
     // console.log('request before config: ', config);
     // 必须返回OBJECT参数对象，否则无法发送请求到服务端
+    this.showLoading({
+      title: '加载中',
+      mask: true,
+    })
     return config;
   },
 

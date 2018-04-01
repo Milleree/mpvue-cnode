@@ -1,9 +1,7 @@
 <template functional>
-  <div>
-    <p class="card">
-      {{text}}
-    </p>
-  </div>
+  <p class="card">
+    {{text}}
+  </p>
 </template>
 
 <script>
