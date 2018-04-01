@@ -1,5 +1,5 @@
 {
-	"description": "这个文件没卵用，是个bug",
+	"description": "项目配置文件。",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
@@ -7,10 +7,11 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
+	"libVersion": "1.9.94",
 	"appid": "wx6a0ce47d80a30bf2",
-	"projectname": "my-project",
+	"projectname": "mpvue",
+	"isGameTourist": false,
 	"condition": {
 		"search": {
 			"current": -1,
