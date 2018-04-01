@@ -1,25 +1,28 @@
 <style lang="less">
+.container {
+  height: 100%;
+}
 .topics {
-  height: 900rpx;
+  height: 100%;
 }
 </style>
 <template>
   <div class="container">
 
     <scroll-view :scroll-y="true" @scrolltolower="getMore" class="topics">
-      <card v-for="(t,i) in topics" :key="i" :text="t.title"></card>
+      <topic-cell v-for="(t,i) in topics" :key="i" :topic="t"></topic-cell>
     </scroll-view>
 
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
+import TopicCell from '@/components/TopicCell'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
-    card,
+    TopicCell,
   },
 
   data() {
