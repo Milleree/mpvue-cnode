@@ -21,7 +21,6 @@ export default {
 
   // 请求成功后的回调函数
   async success(resp) {
-    this.hideLoading()
     let errorMesg = ''
     // 可以在这里对收到的响应数据对象进行加工处理
     switch (resp.statusCode) {
@@ -69,15 +68,15 @@ export default {
     console.log('request fail: ', resp);
     // 必须返回响应数据对象，否则后续无法对响应数据进行处理
     this.showToast({
-      title: 'failed',
+      title: resp.errMsg,
       icon: 'none',
     })
     return resp;
   },
 
   // 请求完成时的回调函数(请求成功或失败都会被执行)
-  // complete(resp) {
-  //   console.log('request complete: ', resp);
-  // },
+  complete(resp) {
+    this.hideLoading()
+  },
 
 }

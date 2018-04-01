@@ -40,5 +40,8 @@ export default {
     color: #b4b4b4;
     vertical-align: middle;
   }
+  & + .cell {
+    border-top: 1rpx solid #ddd;
+  }
 }
 </style>

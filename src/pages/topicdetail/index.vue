@@ -2,12 +2,15 @@
 .topic_header {
   font-size: 28rpx;
   padding: 0 15rpx;
-  .topic_full_title {
+  .label {
+    font-size: 38rpx;
+    vertical-align: middle;
+    line-height: 130%;
+  }
+  .topic_title {
     font-size: 44rpx;
     font-weight: 700;
-    margin: 16rpx 0;
-    display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
     line-height: 130%;
   }
   .changes {
@@ -26,13 +29,13 @@
 <template>
   <div>
     <div class="header topic_header">
-      <text class="topic_full_title">
+      <div>
         <text class="label active" v-if="topic.top">置顶</text>
         <text class="label active" v-else-if="topic.good">精华</text>
         <text class="label" v-else-if="topic.tab==='ask'">问答</text>
         <text class="label" v-else-if="topic.tab==='share'">分享</text>
-        {{topic.title}}
-      </text>
+        <text class="topic_title">{{topic.title}}</text>
+      </div>
       <div class="changes">
         <text> 发布于 {{createAt}} </text>
         <text> 作者 {{topic.author.loginname}} </text>
@@ -41,17 +44,26 @@
         <text> 最后一次编辑是{{lastReplyAt}} </text>
       </div>
     </div>
+
     <wxParse :content="topic.content" />
+
+    <div class="replies panel">
+      <h4 class="header">{{topic.replies.length}} 回复</h4>
+      <reply-cell v-for="(reply,i) in topic.replies" :key="i" :reply="reply" :lou="i+1" />
+    </div>
+
   </div>
 </template>
 
 <script>
 import wxParse from 'mpvue-wxparse'
+import ReplyCell from '@/components/ReplyCell'
 import { getDetail } from '@/services/topics'
 import { timeAgo } from '@/utils/filters'
 export default {
   components: {
     wxParse,
+    ReplyCell,
   },
   data() {
     return {
@@ -64,6 +76,7 @@ export default {
         create_at: '',
         last_reply_at: '',
         visit_count: 0,
+        replies: [],
       },
     }
   },

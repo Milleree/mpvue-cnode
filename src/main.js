@@ -27,8 +27,8 @@ export default {
     pages: ['^pages/index/main'],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'cnode',
+      navigationBarBackgroundColor: '#eee',
+      navigationBarTitleText: 'CNode社区',
       navigationBarTextStyle: 'black',
     },
   },

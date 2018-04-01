@@ -1,5 +1,6 @@
 // 格式化时间
 export function formatDate(date, fmt = 'yyyy-MM-dd hh:mm:ss') {
+  if (!date) return ''
   if (typeof date !== 'object') {
     date = new Date(date)
   }
@@ -20,6 +21,7 @@ export function formatDate(date, fmt = 'yyyy-MM-dd hh:mm:ss') {
 }
 
 export function timeAgo(date) {
+  if (!date) return ''
   const d = typeof date === 'object' ? date : new Date(date)
   const now = Date.now()
 
