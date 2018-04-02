@@ -1,17 +1,7 @@
-<style lang="less">
-.container {
-  height: 100%;
-}
-.topics {
-  height: 100%;
-}
-</style>
 <template>
   <div class="container">
 
-    <scroll-view :scroll-y="true" @scrolltolower="getMore" class="topics">
-      <topic-cell v-for="(t,i) in topics" :key="i" :topic="t"></topic-cell>
-    </scroll-view>
+    <topic-cell v-for="(t,i) in topics" :key="i" :topic="t"></topic-cell>
 
   </div>
 </template>
@@ -41,21 +31,18 @@ export default {
     ...mapActions([
       'getTopics',
     ]),
-    getMore(e) {
-      const refresh = this.topics.length >= 100 // 每隔一定数据量清空一次列表, 因为小程序限制数据量的传入
-      this.getTopics({
+    async getMore() {
+      // 每隔一定数据量清空一次列表, 因为小程序限制数据量的传入
+      const refresh = this.topics.length >= 100
+      await this.getTopics({
         page: ++this.page,
         limit: 20,
         refresh,
       })
-      // .then(() => {
-      //   if (refresh) {
-      //     wx.pageScrollTo({
-      //       scrollTop: 0,
-      //       duration: 300,
-      //     })
-      //   }
-      // })
+      // 回到顶部
+      if (refresh) {
+        wx.pageScrollTo({ scrollTop: 0, duration: 300 })
+      }
     },
   },
 
@@ -65,6 +52,19 @@ export default {
       limit: 20,
       refresh: true, // 是否刷新列表, false表示添加到列表
     })
+  },
+
+  onReachBottom() {
+    this.getMore()
+  },
+
+  async onPullDownRefresh() {
+    await this.getTopics({
+      page: 1,
+      limit: 20,
+      refresh: true,
+    })
+    wx.stopPullDownRefresh()
   },
 }
 </script>

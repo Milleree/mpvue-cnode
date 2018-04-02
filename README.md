@@ -1,5 +1,5 @@
 # mpvue-cnode
-> 基于mpvue实现的cnode社区demo
+> 基于mpvue实现的cnode社区demo，功能逐步完善中..
 
 ## 预览
 

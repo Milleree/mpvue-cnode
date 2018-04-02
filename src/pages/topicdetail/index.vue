@@ -68,6 +68,7 @@ export default {
   data() {
     return {
       topic: {
+        id: '',
         author: {
           loginname: '',
         },
@@ -92,6 +93,10 @@ export default {
   },
   async onLoad({ id }) {
     this.topic = await getDetail({ id })
+  },
+  async onPullDownRefresh() {
+    this.topic = await getDetail({ id: this.topic.id })
+    wx.stopPullDownRefresh()
   },
 }
 </script>

@@ -10,7 +10,8 @@ $wx.intercept('request', requestIntercepter)
 Vue.use({
   install(Vue, options) {
     Vue.prototype.$store = store
-    Vue.prototype.$wx = $wx
+    // 不建议在组件内使用，推荐写在src/services目录下
+    // Vue.prototype.$wx = $wx
   },
 })
 
@@ -30,6 +31,7 @@ export default {
       navigationBarBackgroundColor: '#eee',
       navigationBarTitleText: 'CNode社区',
       navigationBarTextStyle: 'black',
+      'enablePullDownRefresh': true,
     },
   },
 }
