@@ -5,11 +5,11 @@ export function formatDate(date, fmt = 'yyyy-MM-dd hh:mm:ss') {
     date = new Date(date)
   }
   if (/(y+)/.test(fmt)) {
-    let _$1 = RegExp.$1
-    let year = (date.getFullYear() + '').substr(4 - _$1.length, _$1.length)
+    const _$1 = RegExp.$1
+    const year = (date.getFullYear() + '').substr(4 - _$1.length, _$1.length)
     fmt = fmt.replace(_$1, year)
   }
-  let o = {
+  const o = {
     'M': date.getMonth() + 1,
     'd': date.getDate(),
     'h': date.getHours(),

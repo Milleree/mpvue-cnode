@@ -73,9 +73,9 @@ export default {
         },
         title: '',
         content: '',
-        create_at: '',
-        last_reply_at: '',
-        visit_count: 0,
+        'create_at': '',
+        'last_reply_at': '',
+        'visit_count': 0,
         replies: [],
       },
     }
