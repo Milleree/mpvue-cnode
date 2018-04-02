@@ -16,7 +16,7 @@ export default {
   methods: {
     goDetail() {
       wx.navigateTo({
-        url: '/pages/topicdetail/main?id=' + this.topic.id,
+        url: '/pages/topicdetail/topicdetail?id=' + this.topic.id,
       })
     },
   },
