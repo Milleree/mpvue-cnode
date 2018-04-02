@@ -1,3 +1,10 @@
+# mpvue-cnode
+> 基于mpvue实现的cnode社区demo
+
+## 预览
+
+![preview1](preview1.png)  ![preview2](preview2.png)
+
 ## 本地运行
 
 ```
