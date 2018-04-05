@@ -1,8 +1,9 @@
 <style lang="less" scoped>
-@import url('../../utils/vars');
+@import url("../../utils/vars");
 .tabs {
   padding: 20rpx;
   .label {
+    font-size: 30rpx;
     color: @maincolor;
     background: transparent;
     &.active {
@@ -16,9 +17,9 @@
 
 <template>
   <div class="container">
-    <scroll-view scroll-x="true" class="tabs">
+    <div class="tabs">
       <text class="label" v-for="(title,tab) in tabs" :key="tab" :class="{'active':currentTab===tab}" @click="switchTab(tab)">{{title}}</text>
-    </scroll-view>
+    </div>
 
     <topic-cell v-for="(t,i) in topics" :key="i" :topic="t"></topic-cell>
 
@@ -41,8 +42,8 @@ export default {
       tabs: {
         'all': '全部',
         'good': '精华',
-        'ask': '问答',
         'share': '分享',
+        'ask': '问答',
         'job': '招聘',
       },
     }
@@ -84,7 +85,7 @@ export default {
     this.getTopics({
       page: 1,
       tab: this.currentTab,
-      refresh: true, // 是否刷新列表, false表示添加到列表
+      refresh: true, // 是否刷新列表, false表示添加到列表, 不能用page===1代替
     })
   },
 
