@@ -7,6 +7,7 @@ export default {
 </script>
 
 <style lang="less">
+@import url('./utils/vars');
 Page {
   height: 100%;
   background-color: #eee;
@@ -34,7 +35,7 @@ Page {
   color: #999;
   vertical-align: middle;
   &.active {
-    background-color: #80bd01;
+    background-color: @maincolor;
     color: #fff;
   }
 }

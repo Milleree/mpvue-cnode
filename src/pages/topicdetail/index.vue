@@ -33,7 +33,8 @@
         <text class="label active" v-if="topic.top">置顶</text>
         <text class="label active" v-else-if="topic.good">精华</text>
         <text class="label" v-else-if="topic.tab==='ask'">问答</text>
-        <text class="label" v-else-if="topic.tab==='share'">分享</text>
+        <text class="label" v-else-if="topic.tab==='job'">招聘</text>
+        <text class="label" v-else>分享</text>
         <text class="topic_title">{{topic.title}}</text>
       </div>
       <div class="changes">
