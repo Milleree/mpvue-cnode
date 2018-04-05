@@ -1,6 +1,7 @@
 import { getTopics } from '@/services/topics'
 
 export default {
+  namespaced: true,
   state: {
     topics: [],
   },
