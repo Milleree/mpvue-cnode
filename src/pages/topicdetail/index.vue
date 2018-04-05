@@ -51,7 +51,6 @@
       <h4 class="header">{{topic.replies.length}} 回复</h4>
       <reply-cell v-for="(reply,i) in topic.replies" :key="i" :reply="reply" :lou="i+1" />
     </div>
-
   </div>
 </template>
 
@@ -84,14 +83,13 @@ export default {
   computed: {
     createAt() {
       return timeAgo(this.topic.create_at)
-      // return formatDate(this.topic.create_at, 'yyyy/M/d')
     },
     lastReplyAt() {
       return timeAgo(this.topic.last_reply_at)
-      // return formatDate(this.topic.last_reply_at)
     },
   },
   async onLoad({ id }) {
+    // 请求明明已经早完成了，页面迟迟无变化，不知道是mpvue还是wxParse的锅，个人觉得是后者
     this.topic = await getDetail({ id })
   },
   async onPullDownRefresh() {
