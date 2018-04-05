@@ -1,0 +1,62 @@
+@import url('./utils/vars');
+Page {
+  // height: 100%;
+  background-color: #eee;
+}
+.flex {
+  display: flex;
+  &.column {
+    flex-direction: column;
+  }
+  &.inline {
+    display: inline-flex;
+  }
+  &.jc-start {
+    justify-content: flex-start;
+  }
+  &.jc-around {
+    justify-content: space-around;
+  }
+  &.jc-between {
+    justify-content: space-between;
+  }
+  &.ai-center {
+    align-items: center;
+  }
+  .as-end {
+    align-self: flex-end;
+  }
+}
+.flex1 {
+  flex: 1;
+}
+// .fr {
+//   float: right;
+// }
+// .fl {
+//   float: left;
+// }
+.panel {
+  margin: 20rpx 0;
+  border-radius: 20rpx;
+  overflow: hidden;
+  background: #fff;
+  .header {
+    background-color: #f6f6f6;
+    padding: 15rpx;
+  }
+}
+.label {
+  display: inline-block;
+  padding: 4rpx 8rpx;
+  margin-right: 10rpx;
+  font-size: 24rpx;
+  background-color: #e5e5e5;
+  border-radius: 6rpx;
+  color: #999;
+  vertical-align: middle;
+  &.active {
+    background-color: @maincolor;
+    color: #fff;
+  }
+}

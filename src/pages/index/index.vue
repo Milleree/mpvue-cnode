@@ -12,13 +12,31 @@
     }
   }
 }
+.user-info {
+  padding: 20rpx;
+  .btn-login {
+    color: #666;
+    font-size: 26rpx;
+  }
+  .user-avatar {
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+  }
+}
 </style>
-
 
 <template>
   <div class="container">
-    <div class="tabs">
-      <text class="label" v-for="(title,tab) in tabs" :key="tab" :class="{'active':currentTab===tab}" @click="switchTab(tab)">{{title}}</text>
+
+    <div class="flex ai-center jc-between">
+      <div class="tabs">
+        <text class="label" v-for="(title,tab) in tabs" :key="tab" :class="{'active':currentTab===tab}" @click="switchTab(tab)">{{title}}</text>
+      </div>
+      <div class="user-info">
+        <img class="user-avatar" v-if="avatarUrl" :src="avatarUrl" />
+        <text class="btn-login" v-else @click="getUserInfo">登陆</text>
+      </div>
     </div>
 
     <topic-cell v-for="(t,i) in topics" :key="i" :topic="t"></topic-cell>
@@ -52,13 +70,15 @@ export default {
   computed: {
     ...mapState({
       topics: state => state.topics.topics,
+      avatarUrl: state => state.userInfo.avatar_url,
     }),
   },
 
   methods: {
-    ...mapActions('topics', [
-      'getTopics',
-    ]),
+    ...mapActions({
+      getTopics: 'topics/getTopics',
+      getUserInfo: 'userInfo/getUserInfo',
+    }),
     async getMore() {
       // 每隔一定数据量清空一次列表, 因为小程序限制数据量的传入
       const refresh = this.topics.length >= 100
@@ -87,6 +107,8 @@ export default {
       tab: this.currentTab,
       refresh: true, // 是否刷新列表, false表示添加到列表, 不能用page===1代替
     })
+    const storagedaccesstoken = wx.getStorageSync('accesstoken')
+    storagedaccesstoken && this.getUserInfo({ storagedaccesstoken })
   },
 
   onReachBottom() {

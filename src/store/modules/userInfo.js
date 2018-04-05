@@ -1,9 +1,12 @@
 import $wx from 'minapp-api-promise'
+import { login } from '@/services/user'
+
 export default {
+  namespaced: true,
   state: {
-    avatarUrl: '',
-    nickName: '',
-    gender: 1,
+    'avatar_url': '',
+    loginname: '',
+    id: '',
   },
   mutations: {
     SET_USER_INFO(state, payload) {
@@ -11,29 +14,22 @@ export default {
     },
   },
   actions: {
-    async getUserInfo({ commit }) {
-      // 原生方法
-      // wx.login({
-      //   success: () => {
-      //     wx.getUserInfo({
-      //       success: (res) => {
-      //         userInfo = res.userInfo
-      //       }
-      //     })
-      //   }
-      // })
-
-      // Promise写法
-      // $wx.login()
-      //   .then($wx.getUserInfo)
-      //   .then(({ userInfo }) => {
-      //     userInfo = userInfo
-      //   })
-
-      // async写法
-      await $wx.login()
-      const { userInfo } = await $wx.getUserInfo()
-      commit('SET_USER_INFO', userInfo)
+    async getUserInfo({ commit }, { storagedaccesstoken }) {
+      let accesstoken = storagedaccesstoken
+      if (!storagedaccesstoken) {
+        const { confirm } = await $wx.showModal({
+          title: '如何获取AccessToken？',
+          content: '登录网页后，在设置页面可以看到自己的AccessToken。',
+          confirmText: '准备好了',
+        })
+        if (!confirm) return
+        const { result } = await $wx.scanCode()
+        accesstoken = result
+        wx.setStorageSync('accesstoken', accesstoken)
+      }
+      // console.log(accesstoken);
+      const { success, ...userInfo } = await login({ accesstoken })
+      success && commit('SET_USER_INFO', userInfo)
     },
   },
 }
