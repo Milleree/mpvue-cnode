@@ -4,13 +4,13 @@ export default {
   config(config) {
     config.url = BASE_URL + config.url
     // 请求前设置token
-    // const globalData = getApp().globalData
-    // if (globalData.auth && globalData.auth.token) {
+    // const accesstoken = wx.getStorageSync('accesstoken')
+    // if (accesstoken) {
     //   config.header = {
-    //     Authorization: globalData.auth.token
+    //     'X-Token': accesstoken
     //   }
     // }
-    // console.log('request before config: ', config);
+    console.log('request before config: ', config);
     // 必须返回OBJECT参数对象，否则无法发送请求到服务端
     this.showLoading({
       title: '加载中',
