@@ -34,7 +34,7 @@
         <text class="label active" v-else-if="topic.good">精华</text>
         <text class="label" v-else-if="topic.tab==='ask'">问答</text>
         <text class="label" v-else-if="topic.tab==='job'">招聘</text>
-        <text class="label" v-else>分享</text>
+        <text class="label" v-else-if="topic.tab==='share'">分享</text>
         <text class="topic_title">{{topic.title}}</text>
       </div>
       <div class="changes">
@@ -72,7 +72,7 @@ export default {
         author: {
           loginname: '',
         },
-        title: '',
+        title: 'loading',
         content: '',
         'create_at': '',
         'last_reply_at': '',
@@ -90,6 +90,20 @@ export default {
     },
   },
   async onLoad({ id }) {
+    if (this.topic.content) {
+      this.topic = {
+        id: '',
+        author: {
+          loginname: '',
+        },
+        title: 'loading',
+        content: '',
+        'create_at': '',
+        'last_reply_at': '',
+        'visit_count': 0,
+        replies: [],
+      }
+    }
     // 请求明明已经早完成了，页面迟迟无变化，不知道是mpvue还是wxParse的锅，个人觉得是后者
     this.topic = await getDetail({ id })
   },
